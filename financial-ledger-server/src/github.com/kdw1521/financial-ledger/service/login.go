@@ -1,4 +1,4 @@
-package login
+package service 
 
 import (
 	"fmt"
@@ -46,12 +46,12 @@ func Login(c echo.Context) error {
 		} 
 	}
 
-	return c.JSON(http.StatusOK, jwtService(u.Email))
+	return c.JSON(http.StatusOK, jwtService(user.Idx))
 }
 
-func jwtService(email string) map[string]string {
+func jwtService(idx uint64) map[string]string {
 
-	token, err := jwt.CreateJwt(email)
+	token, err := jwt.CreateJwt(idx)
 
 	if err != nil {
 		fmt.Println(err)

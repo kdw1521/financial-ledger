@@ -1,38 +1,44 @@
 package jwt
 
 import (
+	"fmt"
 	"time"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo"
 )
 
 type JwtCustomClaims struct {
-	Email string `json:"email"`
+	Idx uint64 `json:"idx"`
 	jwt.StandardClaims
 }
 
-func GetEmail(c echo.Context) interface{} {
+func getClaims(c echo.Context) *JwtCustomClaims {
 	user := c.Get("user").(*jwt.Token)
 	claims := user.Claims.(*JwtCustomClaims)
-	email := claims.Email
-	return email
+	return claims
+}
+
+func GetIdx(c echo.Context) interface{} {
+	claims := getClaims(c)	
+	idx := claims.Idx
+	return idx 
 }
 
 func GetExp(c echo.Context) interface{} {
-	user := c.Get("user").(*jwt.Token)
-	claims := user.Claims.(*JwtCustomClaims)
+	claims := getClaims(c)	
 	exp := claims.ExpiresAt
 	return exp
 }
 
-func CreateJwt(email string) (map[string]string, error) {
+func CreateJwt(idx uint64) (map[string]string, error) {
+	fmt.Println("idx>>", idx)
 
-	if email == "" {
+	if idx == 0 {
 		return  make(map[string]string), echo.ErrUnauthorized
 	}
 
 	claims := &JwtCustomClaims{
-		email,
+		idx,
 		jwt.StandardClaims{
 			ExpiresAt: time.Now().Add(time.Hour * 72).Unix(),
 		},

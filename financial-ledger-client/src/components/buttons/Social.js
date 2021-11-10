@@ -1,16 +1,15 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faGoogle,
-} from "@fortawesome/free-brands-svg-icons";
 import {Button, Stack} from "react-bootstrap";
 import {GoogleLogin} from 'react-google-login';
 import axios from "axios";
 import { LOGIN_URL } from "shared/action/url";
+import {useHistory} from "react-router";
 
 const clientId = process.env.REACT_APP_CLIENT_ID;
 
 
-function Social() {
+function Social({isLogin}) {
+
+    const history = useHistory();
 
     const onGoogleSuccess = async (e) => {
         const { profileObj : { email, name } } = e;
@@ -19,9 +18,13 @@ function Social() {
             email,
             name
         })
-        console.log(result.data);
 
-
+        if (result.data.token) {
+            localStorage.setItem("token", result.data.token)
+            localStorage.setItem("name", name)
+            history.push("/")
+            window.location.reload()
+        }
     }
 
     const onGoogleFailure = async (error) => {

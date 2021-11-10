@@ -1,16 +1,21 @@
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Auth from "routes/Auth";
 import Header from 'components/layouts/Header';
+import Home from 'routes/Home'
 
-function AppRouter() {
+function AppRouter({isLogin}) {
+    console.log(isLogin)
 
     return (
         <Router>
+            <Header isLogin={isLogin}/>
             <Switch>
-                <Route exact path="/">
-                    <Header/>
-                    <Auth />
-                </Route>
+                {isLogin ? (
+                    <Route exact path="/" component={Home} />
+                ) : (
+                    <Route exact path="/" component={Auth} />
+                )}
+                
             </Switch>
 
         </Router>

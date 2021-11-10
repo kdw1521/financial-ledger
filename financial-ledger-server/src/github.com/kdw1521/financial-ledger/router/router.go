@@ -1,7 +1,6 @@
 package router
 
 import (
-	"net/http"
 
 	"github.com/labstack/echo/middleware"
 	"github.com/labstack/echo"
@@ -18,7 +17,7 @@ func Router(e *echo.Echo) {
 
 	// no required header api
 	e.POST("/login", func(c echo.Context) error {
-		return login.Login(c)
+		return service.Login(c)
 	})
 
 	// Configure middleware with the custom claims type
@@ -32,10 +31,12 @@ func Router(e *echo.Echo) {
 
 	r.Use(middleware.JWTWithConfig(config))
 
+	// r.GET("/home", func(c echo.Context) error {
+	// 	return service.GetAllFinancialLedgerDatas(c)
+	// })
+
 	r.GET("/home", func(c echo.Context) error {
-		return c.JSON(http.StatusOK, map[string]string{
-			"test" : "teststest",
-		})
+		return service.GetFinancialLedgerDatasByUser(c)
 	})
 
 
