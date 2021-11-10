@@ -4,6 +4,9 @@ import axios from "axios";
 import { LOGIN_URL } from "shared/action/url";
 import {useHistory} from "react-router";
 
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const clientId = process.env.REACT_APP_CLIENT_ID;
 
 
@@ -39,20 +42,25 @@ function Social({isLogin}) {
 
     return (
         <>
-            <Stack gap={3} className="col-md-2 mx-auto">
+            <Stack gap={3} className="col-md-2 mx-auto max-width-15">
                 <GoogleLogin 
                     clientId={clientId}
                     responseType={"id_token"}
+                    render={renderProps => (
+                        <Button onClick={renderProps.onClick} variant="outline-dark" className="mt-5">
+                            <FontAwesomeIcon icon={faGoogle} />
+                            <span className="ml-1">Google</span>
+                        </Button>
+                      )}
                     onSuccess={onGoogleSuccess}
                     onFailure={onGoogleFailure} 
-                    className="mt-5"
                 />
-                <Button variant="outline-dark" onClick={onSocialClick} name="naver">
+                {/* <Button variant="outline-dark" onClick={onSocialClick} name="naver">
                     Continue with Naver (naver image 추가예정)
                 </Button>
                 <Button variant="outline-dark" onClick={onSocialClick} name="kakao">
                     Continue with Kakao (kakao image 추가예정)
-                </Button>
+                </Button> */}
             </Stack>
         </>
     )

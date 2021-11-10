@@ -56,3 +56,8 @@ cursor: pointer;
 .padding-0 {
   padding: 0%;
 }
+
+/* width */
+.max-width-15 {
+  max-width: 15rem;
+}
