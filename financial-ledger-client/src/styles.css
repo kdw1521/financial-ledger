@@ -20,7 +20,6 @@ cursor: pointer;
 
 
 /* Auth */
-
 .authContainer {
     display: flex;
     flex-direction: column;
@@ -34,4 +33,26 @@ cursor: pointer;
     color: rgb(135, 29, 235);
 }
 
-/* mt */
+/* margin */
+.ml-04 {
+  margin-left: 0.4rem;
+}
+.ml-05 {
+  margin-left: 0.5rem;
+}
+.ml-1 {
+  margin-left: 1rem;
+}
+.ml-2 {
+  margin-left: 2rem;
+}
+
+/* mouse */
+.mouse-pointer {
+  cursor: pointer;
+}
+
+/* padding */
+.padding-0 {
+  padding: 0%;
+}

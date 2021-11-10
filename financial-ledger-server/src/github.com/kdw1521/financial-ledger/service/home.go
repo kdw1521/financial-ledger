@@ -24,25 +24,12 @@ import (
 // 	UpdateDt time.Time `json:"updateDt"`
 // }
 
-type financialLedgerDataByUser struct {
-	FinancialLedgerIdx uint64 `json:"financialLedgerIdx"`
-	FinancialLedgerDate string `json:"financialLedgerDate"`	
-}
 
-type financialLedgerData struct {
-	FinancialLedgerIdx uint64 `json:"financialLedgerIdx"`
-	FinancialLedgerDate string `json:"financialLedgerDate"`
-	FinancialLedgerDetailIdx uint64 `json:"financialLedgerDetailIdx"`	
-	Price uint64 `json:"price"`
-	LedgerType string `json:"ledgerType"`	
-}
 
 type results struct {
 	Plus []financialLedgerData `json:"plus"`
 	Minus []financialLedgerData `json:"minus"`
 }
-
-const financialLedgerTable = "t_financial_ledger"
 
 func GetAllFinancialLedgerDatas(c echo.Context) error {
 	idx := jwt.GetIdx(c)
@@ -91,7 +78,7 @@ func GetFinancialLedgerDatasByUser(c echo.Context) error {
 
 	financialLedgerDatas := []financialLedgerDataByUser{}
 
-	mysql.Table(financialLedgerTable).Where("user_idx=?", idx).Order("reg_dt desc").Find(&financialLedgerDatas)
+	mysql.Table(financialLedgerTable).Where("user_idx=?", idx).Order("financial_ledger_date desc").Find(&financialLedgerDatas)
 
 	return c.JSON(http.StatusOK, financialLedgerDatas)
 }

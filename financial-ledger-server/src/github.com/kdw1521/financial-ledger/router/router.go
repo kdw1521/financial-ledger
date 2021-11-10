@@ -1,9 +1,12 @@
 package router
 
 import (
+	// "net/http"
+	// "fmt"
 
 	"github.com/labstack/echo/middleware"
 	"github.com/labstack/echo"
+
 	"github.com/kdw1521/financial-ledger/service"
 	"github.com/kdw1521/financial-ledger/common/jwt"
 )
@@ -31,12 +34,16 @@ func Router(e *echo.Echo) {
 
 	r.Use(middleware.JWTWithConfig(config))
 
-	// r.GET("/home", func(c echo.Context) error {
-	// 	return service.GetAllFinancialLedgerDatas(c)
-	// })
-
 	r.GET("/home", func(c echo.Context) error {
 		return service.GetFinancialLedgerDatasByUser(c)
+	})
+
+	r.POST("/ledger", func(c echo.Context) error {
+		return service.PostLedgerDate(c) 
+	})
+
+	r.DELETE("/ledger", func(c echo.Context) error {
+		return service.DeleteLedgerDate(c) 
 	})
 
 
