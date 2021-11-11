@@ -54,5 +54,9 @@ func Router(e *echo.Echo) {
 		return service.UpdateLedgerDetail(c)
 	})
 
+	r.POST("/ledger/detail", func(c echo.Context) error {
+		return service.SaveLedgerDetail(c)	
+	})
+
 
 }

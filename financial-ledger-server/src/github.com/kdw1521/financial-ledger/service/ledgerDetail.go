@@ -67,3 +67,26 @@ func UpdateLedgerDetail(c echo.Context) error {
 
 	return c.String(http.StatusOK, "success")
 }
+
+func SaveLedgerDetail(c echo.Context) error {
+	bodys := make(map[string]interface{})
+	c.Bind(&bodys)
+	fmt.Println(bodys)
+
+	mysql := mysql.ConMysql()
+	mysql.LogMode(true)
+	defer mysql.Close()
+
+	ledgerDetailData := saveFinancialLedgerDetailData{
+		FinancialLedgerIdx: bodys["ledgerIdx"],
+		Price: bodys["price"],
+		Details: bodys["details"],
+		LedgerType: bodys["ledgerType"],
+	}
+
+	if err := mysql.Table(financialLedgerDetailTable).Create(&ledgerDetailData).Error; err != nil {
+		fmt.Println("financial ledger detail insert err>>", err)
+	}
+
+	return c.String(http.StatusOK, "success")
+}

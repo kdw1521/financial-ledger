@@ -7,64 +7,43 @@ import (
 	"github.com/labstack/echo"
 )
 
-// type financialLedgers struct {
-// 	FinancialLedgerIdx uint64 `json:"financialLedgerIdx"`
-// 	UserIdx uint64 `json:"userIdx"`
-// 	FinancialLedgerDate string `json:"financialLedgerDate"`
-// 	RegDt time.Time `json:"regDt"`
-// 	UpdateDt time.Time `json:"updateDt"`
-// }
+// func GetAllFinancialLedgerDatas(c echo.Context) error {
+// 	idx := jwt.GetIdx(c)
 
-// type financialLedgerDetails struct {
-// 	FinancialLedgerDetailIdx uint64 `json:"financialLedgerDetailIdx"`
-// 	FinancialLedgerIdx uint64 `json:"financialLedgerIdx"`
-// 	Price uint64 `json:"price"`
-// 	LedgerType string `json:"ledgerType"`
-// 	RedDt time.Time `json:"regDt"`
-// 	UpdateDt time.Time `json:"updateDt"`
-// }
+// 	mysql := mysql.ConMysql()
+// 	mysql.LogMode(true)
+// 	defer mysql.Close()
 
+// 	financialLedgerDatas := []financialLedgerData{}
+// 	plusDatas := []financialLedgerData{}
+// 	minusDatas := []financialLedgerData{}
 
-
-
-
-func GetAllFinancialLedgerDatas(c echo.Context) error {
-	idx := jwt.GetIdx(c)
-
-	mysql := mysql.ConMysql()
-	mysql.LogMode(true)
-	defer mysql.Close()
-
-	financialLedgerDatas := []financialLedgerData{}
-	plusDatas := []financialLedgerData{}
-	minusDatas := []financialLedgerData{}
-
-	mysql.Table(financialLedgerTable+" as tfl").Select(`
-									tfl.financial_ledger_idx,
-									tfl.financial_ledger_date,
-									tfld.financial_ledger_detail_idx,
-									tfld.price,
-									tfld.ledger_type
-								`).Joins(
-									`left join t_financial_ledger_detail as tfld 
-									on tfl.financial_ledger_idx = tfld.financial_ledger_idx
-								`).Where("tfl.user_idx=?", idx).Scan(&financialLedgerDatas)
+// 	mysql.Table(financialLedgerTable+" as tfl").Select(`
+// 									tfl.financial_ledger_idx,
+// 									tfl.financial_ledger_date,
+// 									tfld.financial_ledger_detail_idx,
+// 									tfld.price,
+// 									tfld.ledger_type
+// 								`).Joins(
+// 									`left join t_financial_ledger_detail as tfld 
+// 									on tfl.financial_ledger_idx = tfld.financial_ledger_idx
+// 								`).Where("tfl.user_idx=?", idx).Scan(&financialLedgerDatas)
 	
-	for _, v := range financialLedgerDatas {
-		if v.LedgerType == "plus" {
-			plusDatas = append(plusDatas, v)
-		} else {
-			minusDatas = append(minusDatas, v)
-		}
-	}
+// 	for _, v := range financialLedgerDatas {
+// 		if v.LedgerType == "plus" {
+// 			plusDatas = append(plusDatas, v)
+// 		} else {
+// 			minusDatas = append(minusDatas, v)
+// 		}
+// 	}
 
-	result := &results {
-		Plus: plusDatas,
-		Minus : minusDatas,
-	}
+// 	result := &results {
+// 		Plus: plusDatas,
+// 		Minus : minusDatas,
+// 	}
 
-	return c.JSON(http.StatusOK, result)
-}
+// 	return c.JSON(http.StatusOK, result)
+// }
 
 func GetFinancialLedgerDatasByUser(c echo.Context) error {
 	idx := jwt.GetIdx(c)

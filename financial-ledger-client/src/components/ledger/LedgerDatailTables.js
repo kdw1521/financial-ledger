@@ -1,7 +1,7 @@
 import {Table} from "react-bootstrap"
 import {useState} from "react"
 
-import LedgerDetailModal from "./LedgerDetailModal"
+import LedgerDetailModal from "components/ledger/LedgerDetailModal";
 
 function LedgerDetailTables({datas}) {
 

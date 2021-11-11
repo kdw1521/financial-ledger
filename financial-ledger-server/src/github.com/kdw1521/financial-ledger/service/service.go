@@ -15,13 +15,13 @@ type financialLedgerDataByUser struct {
 	FinancialLedgerDate string `json:"financialLedgerDate"`	
 }
 
-type financialLedgerData struct {
-	FinancialLedgerIdx uint64 `json:"financialLedgerIdx"`
-	FinancialLedgerDate string `json:"financialLedgerDate"`
-	FinancialLedgerDetailIdx uint64 `json:"financialLedgerDetailIdx"`	
-	Price uint64 `json:"price"`
-	LedgerType string `json:"ledgerType"`	
-}
+// type financialLedgerData struct {
+// 	FinancialLedgerIdx uint64 `json:"financialLedgerIdx"`
+// 	FinancialLedgerDate string `json:"financialLedgerDate"`
+// 	FinancialLedgerDetailIdx uint64 `json:"financialLedgerDetailIdx"`	
+// 	Price uint64 `json:"price"`
+// 	LedgerType string `json:"ledgerType"`	
+// }
 
 type financialLedgerDate struct {
 	FinancialLedgerIdx uint64 `json:"financialLedgerIdx"`
@@ -36,10 +36,10 @@ type deleteFinancialLedgerData struct {
 	FinancialLedgerIdx interface{} `json:"financialLedgerIdx"`
 }
 
-type results struct {
-	Plus []financialLedgerData `json:"plus"`
-	Minus []financialLedgerData `json:"minus"`
-}
+// type results struct {
+// 	Plus []financialLedgerData `json:"plus"`
+// 	Minus []financialLedgerData `json:"minus"`
+// }
 
 type allFinancialLedgerDetailResults struct {
 	Plus []getFinancialLedgerDetailData `json:"plus"`
@@ -57,4 +57,11 @@ type updateFinancialLedgerDetailData struct {
 	Price interface{} `json:"price"`
 	Details interface{} `json:"details"`
 	UpdateDt time.Time `json:"updateDt"`
+}
+
+type saveFinancialLedgerDetailData struct {
+	FinancialLedgerIdx interface{} `json:"financialLedgerIdx"`
+	Price interface{} `json:"price"`
+	Details interface{} `json:"details"`
+	LedgerType interface{} `json:"ledgerType"`
 }
