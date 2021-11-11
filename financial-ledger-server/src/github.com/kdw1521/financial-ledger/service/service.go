@@ -1,7 +1,12 @@
 package service
 
+import (
+	"time"
+)
+
 const (
 	financialLedgerTable = "t_financial_ledger"
+	financialLedgerDetailTable = "t_financial_ledger_detail"
 )
 	
 
@@ -29,4 +34,27 @@ type insertFinancialLedgerData struct {
 
 type deleteFinancialLedgerData struct {
 	FinancialLedgerIdx interface{} `json:"financialLedgerIdx"`
+}
+
+type results struct {
+	Plus []financialLedgerData `json:"plus"`
+	Minus []financialLedgerData `json:"minus"`
+}
+
+type allFinancialLedgerDetailResults struct {
+	Plus []getFinancialLedgerDetailData `json:"plus"`
+	Minus []getFinancialLedgerDetailData `json:"minus"`
+}
+
+type getFinancialLedgerDetailData struct {
+	FinancialLedgerDetailIdx uint64 `json:"financialLedgerDetailIdx"`
+	Price uint64 `json:"price"`
+	Details string `json:"details"`
+	LedgerType string `json:"ledgerType"`
+}
+
+type updateFinancialLedgerDetailData struct {
+	Price interface{} `json:"price"`
+	Details interface{} `json:"details"`
+	UpdateDt time.Time `json:"updateDt"`
 }

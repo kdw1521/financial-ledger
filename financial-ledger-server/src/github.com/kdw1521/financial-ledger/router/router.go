@@ -46,5 +46,13 @@ func Router(e *echo.Echo) {
 		return service.DeleteLedgerDate(c) 
 	})
 
+	r.GET("/ledger/detail", func(c echo.Context) error {
+		return service.GetLedgerDetail(c)	
+	})
+
+	r.PUT("/ledger/detail", func(c echo.Context) error {
+		return service.UpdateLedgerDetail(c)
+	})
+
 
 }

@@ -44,11 +44,11 @@ function Social({isLogin}) {
         console.log(error);
     }
     
-    const onSocialClick = async (e) => {
-        console.log(clientId);
-        const provider = "서버 작업 후 진행";
-        window.confirm(provider);
-    }
+    // const onSocialClick = async (e) => {
+    //     console.log(clientId);
+    //     const provider = "서버 작업 후 진행";
+    //     window.confirm(provider);
+    // }
 
     return (
         <>

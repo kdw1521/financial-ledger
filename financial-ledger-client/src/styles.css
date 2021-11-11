@@ -19,6 +19,15 @@ cursor: pointer;
 
 
 
+/* react bootstrap input type*/
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
 /* Auth */
 .authContainer {
     display: flex;
@@ -71,6 +80,12 @@ cursor: pointer;
 }
 
 /* width */
+.max-width-7 {
+  max-width: 7rem;
+}
+.max-width-10 {
+  max-width: 10rem;
+}
 .max-width-15 {
   max-width: 15rem;
 }

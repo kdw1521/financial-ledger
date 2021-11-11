@@ -26,10 +26,7 @@ import (
 
 
 
-type results struct {
-	Plus []financialLedgerData `json:"plus"`
-	Minus []financialLedgerData `json:"minus"`
-}
+
 
 func GetAllFinancialLedgerDatas(c echo.Context) error {
 	idx := jwt.GetIdx(c)

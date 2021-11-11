@@ -1,7 +1,9 @@
 import {Card} from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
+
 import { LEDGER_URL } from 'shared/action/url';
 import { headers } from 'shared/util/headers';
 
@@ -28,6 +30,7 @@ function LedgerCard({datas}) {
         }
     }
 
+
     return (
             <div className="col-12 p-1 col-sm-4 p-sm-2 col-md-4 p-md-3 col-lg-2 p-lg-4" >
                 <Card border="dark" style={{ width: '9rem' }}>
@@ -36,9 +39,17 @@ function LedgerCard({datas}) {
                             <FontAwesomeIcon icon={faTimes} />
                         </span>
                     </Card.Header>
-                    <Card.Body>
-                        <Card.Title>{datas.financialLedgerDate}</Card.Title>
-                    </Card.Body>
+                    <Link to={{
+                        pathname: "/detail",
+                        state: {
+                            financialLedgerIdx: datas.financialLedgerIdx,
+                            financialLedgerDate: datas.financialLedgerDate
+                        }
+                    }} style={{color: "black"}}>
+                        <Card.Body className="mouse-pointer">
+                            <Card.Title>{datas.financialLedgerDate}</Card.Title>
+                        </Card.Body>
+                    </Link>
                 </Card>
             </div>
     )

@@ -1,5 +1,5 @@
 import {Navbar, Nav, Container } from 'react-bootstrap'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,9 +8,13 @@ import {name} from 'shared/util/localStorage'
 
 function Header() {
 
+    const history = useHistory();
+
     const onLogoutClick = () => {
         localStorage.clear()
+        history.push("/")
         window.location.reload()
+        
     }
 
     return (
