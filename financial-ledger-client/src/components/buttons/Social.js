@@ -17,17 +17,27 @@ function Social({isLogin}) {
     const onGoogleSuccess = async (e) => {
         const { profileObj : { email, name } } = e;
 
-        const result = await axios.post(LOGIN_URL, {
-            email,
-            name
-        })
-
-        if (result.data.token) {
-            localStorage.setItem("token", result.data.token)
-            localStorage.setItem("name", name)
-            history.push("/")
-            window.location.reload()
+        try {
+            const result = await axios.post(LOGIN_URL, {
+                email,
+                name
+            })
+    
+            if (result.data.token) {
+                localStorage.setItem("token", result.data.token)
+                localStorage.setItem("name", name)
+                history.push("/")
+                window.location.reload()
+            }    
+        } catch (err) {
+            console.log(err.message)
+            if(err.response.status === 401) {
+                alert("토큰 만기로 로그아웃 됩니다. 재로그인 해주세요!") 
+                localStorage.clear()
+                window.location.reload()
+             }
         }
+        
     }
 
     const onGoogleFailure = async (error) => {

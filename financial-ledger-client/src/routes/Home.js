@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {Container, Row, Button, Badge} from 'react-bootstrap'
+import {Container, Row, Button, Badge, Alert} from 'react-bootstrap'
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,9 +22,17 @@ function Home() {
 
 
     useEffect(() => {
-        ledger().then((res)=>{
-            setLedgerData(res.data);
-        });
+        ledger()
+            .then((res)=>{
+                setLedgerData(res.data);
+            })
+            .catch(err => {
+                if(err.response.status === 401) {
+                   alert("토큰 만기로 로그아웃 됩니다. 재로그인 해주세요!") 
+                   localStorage.clear()
+                   window.location.reload()
+                }
+            });
     }, []);
 
     useEffect( () => {

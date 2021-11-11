@@ -15,12 +15,16 @@ function LedgerCard({datas}) {
                 `${LEDGER_URL}?ledgerIdx=${financialLedgerIdx}`,
                 {headers : headers}
              )
-             console.log(result)
              if(result.data === "success") {
                  window.location.reload()
              }
         } catch (err) {
             console.log(err.message)
+            if(err.response.status === 401) {
+                alert("토큰 만기로 로그아웃 됩니다. 재로그인 해주세요!") 
+                localStorage.clear()
+                window.location.reload()
+             }
         }
     }
 
