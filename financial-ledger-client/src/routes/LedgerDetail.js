@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
-import {Container, Row, Col, Badge } from "react-bootstrap"
+import {Container, Row, Col, Badge, OverlayTrigger, Tooltip} from "react-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faFlushed, faGrin } from "@fortawesome/free-solid-svg-icons";
 
@@ -15,11 +15,13 @@ function LedgerDetail({location}) {
     const financialLedgerIdx = location.state.financialLedgerIdx, financialLedgerDate = location.state.financialLedgerDate;
 
     const [ledgerDetailDatas, setLedgerDetailDatas] = useState([]);
+    const [ledgerType, setLedgType] = useState("")
     const [plusData, setPlusData] = useState([]);
     const [minusData, setMinusData] = useState([]);
+    const [allPlus, setAllPlus] = useState(0)
+    const [allMinus, setAllMinus] = useState(0)
 
     const [modalShow, setModalShow] = useState(false)
-    const [ledgerType, setLedgType] = useState("")
     
     const getLedgerDetailDatas = useCallback( async () => {
         try {
@@ -45,22 +47,48 @@ function LedgerDetail({location}) {
         setMinusData(ledgerDetailDatas.minus)
     }, [ledgerDetailDatas]);
 
-    if(plusData?.length) {
-        console.log("exi")
-    } else {
-        console.log("not")
-    }
+    useEffect( () => {
+        let allPlus = 0;
+        let allMinus = 0;
+       plusData?.forEach( v => allPlus += v.price)
+       minusData?.forEach( v => allMinus += v.price)
+       setAllPlus(allPlus)
+       setAllMinus(allMinus)
+    }, [plusData, minusData])
+
+
 
     return (
         <>
             <Container>
                 <Row>
-                    <h3 className="mt-5">{financialLedgerDate}</h3>
+                    <OverlayTrigger
+                        key="right"
+                        placement="right"
+                        overlay={
+                            <Tooltip id="tooltip-right">
+                                <span className="font-size-0-8">차액 : {allPlus - allMinus}</span>
+                            </Tooltip>
+                        }
+                        >
+                        <span className="mt-5 max-width-11-1 font-size-1-9">{financialLedgerDate}</span>
+                    </OverlayTrigger>
                     <hr/>
                 </Row>
+
                 <Row>
                     <Col>
-                        <Badge bg="dark">Plus</Badge>
+                       <OverlayTrigger
+                            key="bottom"
+                            placement="bottom"
+                            overlay={
+                                <Tooltip id="tooltip-bottom">
+                                    <span className="font-size-0-2">전체 수입 : {allPlus}</span>
+                                </Tooltip>
+                            }
+                            >
+                            <Badge bg="dark" >수입 내역</Badge>
+                        </OverlayTrigger>
                         <Badge bg="dark" 
                             className="ml-04 mouse-pointer" 
                             onClick={ () => {
@@ -76,14 +104,24 @@ function LedgerDetail({location}) {
                                 <LedgerDetailTables datas={plusData} /> 
                             :
                                  <>
-                                    no data..<FontAwesomeIcon icon={faFlushed} className="ml-04" />
+                                    수입 내역이 없어요..<FontAwesomeIcon icon={faFlushed} className="ml-04" />
                                     <br/>
-                                    plz add data<FontAwesomeIcon icon={faGrin} className="ml-04"/>
+                                    내역을 추가해 주세요!<FontAwesomeIcon icon={faGrin} className="ml-04"/>
                                 </>
                         }
                     </Col>
                     <Col>
-                        <Badge bg="dark">Minus</Badge>
+                    <OverlayTrigger
+                            key="bottom"
+                            placement="bottom"
+                            overlay={
+                                <Tooltip id="tooltip-bottom">
+                                    <span className="font-size-0-2">전체 지출 : {allMinus}</span>
+                                </Tooltip>
+                            }
+                            >
+                            <Badge bg="dark" >지출 내역</Badge>
+                        </OverlayTrigger>
                         <Badge bg="dark" 
                             className="ml-04 mouse-pointer" 
                             onClick={ () => {
@@ -99,9 +137,9 @@ function LedgerDetail({location}) {
                                 <LedgerDetailTables datas={minusData} /> 
                             : 
                                 <>
-                                    no data..<FontAwesomeIcon icon={faFlushed} className="ml-04"/>
+                                    지출 내역이 없어요..<FontAwesomeIcon icon={faFlushed} className="ml-04"/>
                                     <br/>
-                                    plz add data<FontAwesomeIcon icon={faGrin} className="ml-04"/>
+                                    내역을 추가해 주세요!<FontAwesomeIcon icon={faGrin} className="ml-04"/>
                                 </>
                         }
                     </Col>

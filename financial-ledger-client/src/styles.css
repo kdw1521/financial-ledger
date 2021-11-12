@@ -41,6 +41,18 @@ input[type=number]::-webkit-outer-spin-button {
 .font-color {
     color: rgb(135, 29, 235);
 }
+.font-size-1-9 {
+  font-size: 1.9rem;
+}
+.font-size-0-2 {
+  font-size: 0.2rem;
+}
+.font-size-0-8 {
+  font-size: 0.8rem;
+}
+.font-size-0-9 {
+  font-size: 0.9rem;
+}
 
 /* margin */
 .ml-04 {
@@ -80,6 +92,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 /* width */
+.max-width-11-1 {
+  max-width: 11.1rem;
+}
 .max-width-7 {
   max-width: 7rem;
 }

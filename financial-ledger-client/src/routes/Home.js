@@ -100,7 +100,7 @@ function Home() {
             <Container>
                 <div className="mt-5 ml-1">
                     <Badge pill bg="dark" className="mb-2">
-                        add financial ledger date<FontAwesomeIcon icon={faGrinSquint} className="ml-04" />
+                        가계부 날짜를 추가해주세요<FontAwesomeIcon icon={faGrinSquint} className="ml-04" />
                     </Badge>
                     <div style={{display:"flex", maxWidth: "16rem"}}>
                         <DatePicker 

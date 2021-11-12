@@ -42,7 +42,9 @@ function LedgerModal({checkLedgerDate, selectLedgerDate}) {
 
     return (
         <>
-            <Button variant="outline-dark" onClick={handleShow} style={{height:"2rem"}}>add</Button>
+            <Button variant="outline-dark" onClick={handleShow} style={{height:"2rem", width: "4rem"}}>
+                추가
+            </Button>
             
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton >

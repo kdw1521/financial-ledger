@@ -113,8 +113,8 @@ function LedgerDetailModal(props) {
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                     {props.kind === "add" ? 
-                        <><span>add price and details??</span><FontAwesomeIcon icon={faGrin} className="ml-04"/> </>: 
-                        <><span>change price or details??</span><FontAwesomeIcon icon={faSurprise} className="ml-04"/> </>
+                        <><span>내역을 추가하시겠어요??</span><FontAwesomeIcon icon={faGrin} className="ml-04"/> </>: 
+                        <><span>내역을 수정하시겠어요??</span><FontAwesomeIcon icon={faSurprise} className="ml-04"/> </>
                     }
                 </Modal.Title>
             </Modal.Header>
@@ -122,7 +122,7 @@ function LedgerDetailModal(props) {
             <Modal.Body>
                 <FloatingLabel
                         controlId="floatingInput"
-                        label="price"
+                        label="금액"
                         className="mb-3"
                 >
                     <Form.Control type="number" value={price || ""} name="price" onChange={onChange} />
@@ -130,7 +130,7 @@ function LedgerDetailModal(props) {
 
                 <FloatingLabel
                     controlId="floatingInput"
-                    label="details"
+                    label="내용"
                     className="mb-3"
                 >
                     <Form.Control type="text" value={details || ""} name="details" onChange={onChange} />
@@ -139,10 +139,10 @@ function LedgerDetailModal(props) {
           
           <Modal.Footer>
             <Button variant="outline-dark" onClick={onClickLedgerDetailData}>
-                {props.kind === "add" ? "Add" : "Change"}
+                {props.kind === "add" ? "추가" : "수정"}
             </Button>
             {props.kind !== "add" &&
-                <Button variant="outline-danger" onClick={onClickDeleteDetailData}>Delete</Button>}
+                <Button variant="outline-danger" onClick={onClickDeleteDetailData}>삭제</Button>}
           </Modal.Footer>
         </Modal>
       );

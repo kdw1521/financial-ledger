@@ -22,8 +22,8 @@ function LedgerDetailTables({datas}) {
             <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
-                        <th>price</th>
-                        <th>details</th>
+                        <th>금액</th>
+                        <th>내용</th>
                     </tr>
                 </thead>
                 <tbody>
