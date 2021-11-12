@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import {Container, Row, Col, Badge } from "react-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faFlushed, faGrin } from "@fortawesome/free-solid-svg-icons";
 
 import { LEDGER_DETAIL_URL } from "shared/action/url";
 import { headers } from "shared/util/headers";
@@ -45,6 +45,12 @@ function LedgerDetail({location}) {
         setMinusData(ledgerDetailDatas.minus)
     }, [ledgerDetailDatas]);
 
+    if(plusData?.length) {
+        console.log("exi")
+    } else {
+        console.log("not")
+    }
+
     return (
         <>
             <Container>
@@ -65,7 +71,16 @@ function LedgerDetail({location}) {
                             <FontAwesomeIcon icon={faPlus}  />
                         </Badge>
                         <hr/>
-                        <LedgerDetailTables datas={plusData} />
+                        {plusData?.length 
+                            ?
+                                <LedgerDetailTables datas={plusData} /> 
+                            :
+                                 <>
+                                    no data..<FontAwesomeIcon icon={faFlushed} className="ml-04" />
+                                    <br/>
+                                    plz add data<FontAwesomeIcon icon={faGrin} className="ml-04"/>
+                                </>
+                        }
                     </Col>
                     <Col>
                         <Badge bg="dark">Minus</Badge>
@@ -79,7 +94,16 @@ function LedgerDetail({location}) {
                             <FontAwesomeIcon icon={faPlus}  />
                         </Badge>
                         <hr/>
-                        <LedgerDetailTables datas={minusData} />
+                        {minusData?.length 
+                            ?
+                                <LedgerDetailTables datas={minusData} /> 
+                            : 
+                                <>
+                                    no data..<FontAwesomeIcon icon={faFlushed} className="ml-04"/>
+                                    <br/>
+                                    plz add data<FontAwesomeIcon icon={faGrin} className="ml-04"/>
+                                </>
+                        }
                     </Col>
                 </Row>
             </Container>
