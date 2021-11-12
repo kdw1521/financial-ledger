@@ -60,7 +60,7 @@ function LedgerDetail({location}) {
 
     return (
         <>
-            <Container>
+            <Container className="mt-4">
                 <Row>
                     <OverlayTrigger
                         key="right"
@@ -104,9 +104,9 @@ function LedgerDetail({location}) {
                                 <LedgerDetailTables datas={plusData} /> 
                             :
                                  <>
-                                    수입 내역이 없어요..<FontAwesomeIcon icon={faFlushed} className="ml-04" />
+                                    내역이 없어요..<FontAwesomeIcon icon={faFlushed} className="ml-04" />
                                     <br/>
-                                    내역을 추가해 주세요!<FontAwesomeIcon icon={faGrin} className="ml-04"/>
+                                    추가해 주세요!<FontAwesomeIcon icon={faGrin} className="ml-04"/>
                                 </>
                         }
                     </Col>
@@ -137,9 +137,9 @@ function LedgerDetail({location}) {
                                 <LedgerDetailTables datas={minusData} /> 
                             : 
                                 <>
-                                    지출 내역이 없어요..<FontAwesomeIcon icon={faFlushed} className="ml-04"/>
+                                    내역이 없어요..<FontAwesomeIcon icon={faFlushed} className="ml-04"/>
                                     <br/>
-                                    내역을 추가해 주세요!<FontAwesomeIcon icon={faGrin} className="ml-04"/>
+                                    추가해 주세요!<FontAwesomeIcon icon={faGrin} className="ml-04"/>
                                 </>
                         }
                     </Col>

@@ -97,7 +97,7 @@ function Home() {
 
     return (
         <>
-            <Container>
+            <Container className="mt-6">
                 <div className="mt-5 ml-1">
                     <Badge pill bg="dark" className="mb-2">
                         가계부 날짜를 추가해주세요<FontAwesomeIcon icon={faGrinSquint} className="ml-04" />

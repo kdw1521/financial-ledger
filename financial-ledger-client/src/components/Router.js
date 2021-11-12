@@ -18,9 +18,7 @@ function AppRouter({isLogin}) {
                 ) : (
                     <Route exact path="/" component={Auth} />
                 )}
-                
             </Switch>
-
         </Router>
     )
 }

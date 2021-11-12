@@ -19,7 +19,7 @@ function Header() {
 
     return (
         <>
-            <Navbar bg="dark" variant="dark">
+            <Navbar bg="dark" variant="dark"fixed="top">
                 <Container fluid>
                     <Nav>
                         <Link to="/">

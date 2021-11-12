@@ -11,10 +11,6 @@ import (
 	"github.com/kdw1521/financial-ledger/common/jwt"
 )
 
-type Login struct {
-	Email string `json:"email"`
-	Name string `json:"name"`	
-}
 
 func Router(e *echo.Echo) {
 
@@ -22,6 +18,7 @@ func Router(e *echo.Echo) {
 	e.POST("/login", func(c echo.Context) error {
 		return service.Login(c)
 	})
+
 
 	// Configure middleware with the custom claims type
 	config := middleware.JWTConfig{
