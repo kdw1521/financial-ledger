@@ -58,5 +58,9 @@ func Router(e *echo.Echo) {
 		return service.SaveLedgerDetail(c)	
 	})
 
+	r.DELETE("/ledger/detail", func(c echo.Context) error {
+		return service.DeleteLedgerDetail(c)
+	})
+
 
 }

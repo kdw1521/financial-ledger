@@ -65,3 +65,7 @@ type saveFinancialLedgerDetailData struct {
 	Details interface{} `json:"details"`
 	LedgerType interface{} `json:"ledgerType"`
 }
+
+type deleteFinancialLedgerDetailData struct {
+	FinancialLedgerDetailIdx interface{} `json:"financialLedgerDetailIdx"`
+}

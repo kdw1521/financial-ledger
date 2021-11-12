@@ -46,11 +46,6 @@ function LedgerDetailModal(props) {
 
     const onClickLedgerDetailData = async () => {
         if(kind === "add") {
-            console.log(kind)
-            console.log(ledgerType)
-            console.log(price)
-            console.log(details)
-            console.log(ledgerIdx)
             try {
                 const result = await axios.post(LEDGER_DETAIL_URL,{
                         "price" : Number(price),
@@ -60,7 +55,6 @@ function LedgerDetailModal(props) {
                     },
                     {headers: headers}
                 )
-                console.log(result)
                 if(result.data === "success") {
                     window.location.reload()
                 }
@@ -94,6 +88,21 @@ function LedgerDetailModal(props) {
         }
     }
 
+    const onClickDeleteDetailData = async () => {
+        try {
+            const result = await axios.delete(`${LEDGER_DETAIL_URL}?ledgerDetailIdx=${detailIdx}`,{headers: headers})
+            if(result.data === "success") {
+                window.location.reload()
+            }
+        } catch (err) {
+            if(err.response.status === 401) {
+                alert("토큰 만료로 로그아웃 됩니다. 재로그인 해주세요!") 
+                localStorage.clear()
+                window.location.reload()
+            } 
+        }
+    }
+
 
     return (
         <Modal
@@ -104,7 +113,7 @@ function LedgerDetailModal(props) {
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                     {props.kind === "add" ? 
-                        <><span>add price or details??</span><FontAwesomeIcon icon={faGrin} className="ml-04"/> </>: 
+                        <><span>add price and details??</span><FontAwesomeIcon icon={faGrin} className="ml-04"/> </>: 
                         <><span>change price or details??</span><FontAwesomeIcon icon={faSurprise} className="ml-04"/> </>
                     }
                 </Modal.Title>
@@ -132,7 +141,8 @@ function LedgerDetailModal(props) {
             <Button variant="outline-dark" onClick={onClickLedgerDetailData}>
                 {props.kind === "add" ? "Add" : "Change"}
             </Button>
-            <Button variant="outline-dark" onClick={props.onHide}>Close</Button>
+            {props.kind !== "add" &&
+                <Button variant="outline-danger" onClick={onClickDeleteDetailData}>Delete</Button>}
           </Modal.Footer>
         </Modal>
       );
