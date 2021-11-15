@@ -1,7 +1,6 @@
 package jwt
 
 import (
-	"fmt"
 	"time"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo"
@@ -31,7 +30,6 @@ func GetExp(c echo.Context) interface{} {
 }
 
 func CreateJwt(idx uint64) (map[string]string, error) {
-	fmt.Println("idx>>", idx)
 
 	if idx == 0 {
 		return  make(map[string]string), echo.ErrUnauthorized
