@@ -51,7 +51,7 @@ function Social({isLogin}) {
         <>
                 <Stack gap={3} className="col-md-2 mx-auto max-width-15 mt-10">
                     <span style={{textAlign:"center", fontSize:"1.5rem"}}>
-                        <span className="font-color">완도</span>의 가계부에 오신걸<br/>
+                        <span className="font-color">완도</span> 가계부<br/>
                         환영해요! <FontAwesomeIcon icon={faGrin} />
                         </span>
                     <span style={{textAlign: "center", fontSize:"0.8rem"}} className="mt-3">
