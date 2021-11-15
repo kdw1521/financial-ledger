@@ -87,6 +87,9 @@ input[type=number]::-webkit-outer-spin-button {
 .mt-10 {
   margin-top: 10rem;
 }
+.mt-11 {
+  margin-top: 11rem;
+}
 
 /* mouse */
 .mouse-pointer {

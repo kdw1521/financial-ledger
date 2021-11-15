@@ -1,4 +1,4 @@
-import Social from "components/buttons/Social";
+import Social from "components/home/Social";
 
 function Auth() {
     return (
