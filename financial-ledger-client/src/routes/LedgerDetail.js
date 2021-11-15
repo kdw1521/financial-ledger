@@ -71,7 +71,7 @@ function LedgerDetail({location}) {
                             </Tooltip>
                         }
                         >
-                        <span className="mt-5 max-width-11-1 font-size-1-9">{financialLedgerDate}</span>
+                        <span className="mt-5 max-width-13 font-size-1-9">{financialLedgerDate}</span>
                     </OverlayTrigger>
                     <hr/>
                 </Row>

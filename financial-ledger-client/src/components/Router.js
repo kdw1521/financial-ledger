@@ -3,6 +3,7 @@ import Auth from "routes/Auth";
 import Header from 'components/layouts/Header';
 import Home from 'routes/Home'
 import LedgerDetail from "routes/LedgerDetail";
+import Footer from "./layouts/Footer";
 
 function AppRouter({isLogin}) {
 
@@ -19,6 +20,7 @@ function AppRouter({isLogin}) {
                     <Route exact path="/" component={Auth} />
                 )}
             </Switch>
+            <Footer />
         </Router>
     )
 }

@@ -46,7 +46,7 @@ function LedgerModal({checkLedgerDate, selectLedgerDate}) {
                 add
             </Button>
             
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} centered>
                 <Modal.Header closeButton >
                     <span className="font-color">이런!</span>
                 </Modal.Header>

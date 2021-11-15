@@ -33,9 +33,13 @@ function LedgerCard({datas}) {
 
     return (
             <div className="col-12 p-1 col-sm-4 p-sm-2 col-md-4 p-md-3 col-lg-2 p-lg-4" >
-                <Card border="dark" style={{ width: '9rem' }}>
+                <Card border="dark" style={{ width: '10rem', textAlign: "center" }}>
                     <Card.Header>
-                        <span id={datas.financialLedgerIdx} onClick={onDeleteClick} className="mouse-pointer font-color">
+                        <span 
+                            id={datas.financialLedgerIdx} 
+                            onClick={onDeleteClick} 
+                            className="mouse-pointer font-color mr-6"
+                        >
                             <FontAwesomeIcon icon={faTimes} />
                         </span>
                     </Card.Header>
