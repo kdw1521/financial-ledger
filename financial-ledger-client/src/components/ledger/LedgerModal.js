@@ -43,7 +43,7 @@ function LedgerModal({checkLedgerDate, selectLedgerDate}) {
     return (
         <>
             <Button variant="outline-dark" onClick={handleShow} style={{height:"2rem", width: "4rem"}} className="ml-05">
-                add
+                Add
             </Button>
             
             <Modal show={show} onHide={handleClose} centered>
