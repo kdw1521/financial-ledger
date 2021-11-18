@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 import {name} from 'shared/util/localStorage'
+import wd from 'img/wd.png'
 
 
 function Header() {
@@ -23,7 +24,7 @@ function Header() {
                 <Container fluid>
                     <Nav>
                         <Link to="/">
-                            <img src="img/wd.png" style={{height:30}} />
+                            <img src={wd} style={{height:30}} alt="wando logo" />
                             <span className="font-color">Financial-ledger</span>
                         </Link>
                     </Nav>

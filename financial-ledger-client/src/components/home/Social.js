@@ -1,15 +1,20 @@
 import {Button, Stack } from "react-bootstrap";
 import {GoogleLogin} from 'react-google-login';
 import KaKaoLogin from 'react-kakao-login';
+import NaverLogin from 'react-naver-login'
 import axios from "axios";
-import { LOGIN_URL } from "shared/action/url";
 
-import { faGoogle, faKaggle } from "@fortawesome/free-brands-svg-icons";
 import { faGrin } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { LOGIN_URL } from "shared/action/url";
+import naverImg from "img/naver.png"
+import kakaoImg from "img/kakao.png"
+import googleImg from "img/google.png"
+
 const clientId = process.env.REACT_APP_CLIENT_ID;
 const kakaoToken = process.env.REACT_APP_KAKAO_TOKEN;
+const naverToken = process.env.REACT_APP_NAVER_TOKEN;
 
 function Social({isLogin}) {
 
@@ -31,8 +36,8 @@ function Social({isLogin}) {
     }
 
     const onGoogleSuccess = async (e) => {
-        const { profileObj : { name }, wa } = e;
-        socialLogin(wa, name)
+        const { profileObj : { name, googleId } } = e;
+        socialLogin(googleId, name)
     }
 
     const onKakaoSuccess = async (e) => {
@@ -40,11 +45,18 @@ function Social({isLogin}) {
         socialLogin(id, nickname)
     }
 
+    const onNaverSuccess = async (e) => {
+        console.log(e)
+    }
+
     const onKakaoFail = async (err) => {
         console.log(err)
     }
     const onGoogleFailure = async (err) => {
         console.log(err);
+    }
+    const onNaverFailure = async (err) => {
+        console.log(err)
     }
 
     return (
@@ -63,8 +75,8 @@ function Social({isLogin}) {
                         responseType={"id_token"}
                         render={renderProps => (
                             <Button onClick={renderProps.onClick} variant="outline-dark" className="mt-5" >
-                                <FontAwesomeIcon icon={faGoogle} className="font-color"/>
-                                <span className="ml-1">Google</span>
+                                <img src={googleImg} style={{width:"1.5rem", height: "1.5rem"}} alt="google img" />
+                                <span className="ml-04">Google</span>
                             </Button>
                         )}
                         onSuccess={onGoogleSuccess}
@@ -78,9 +90,23 @@ function Social({isLogin}) {
                         getProfile={true}
                         render={renderProps =>( 
                             <Button onClick={renderProps.onClick} variant="outline-dark" className="mt-5">
-                                <FontAwesomeIcon icon={faKaggle} className="font-color"/>
-                                <span className="ml-1">Kakao</span>
+                                <img src={kakaoImg} style={{width:"1.5rem", height: "1.5rem"}} alt="kakao img" />
+                                <span className="ml-04">Kakao</span>
                             </Button>
+                        )}
+                    />
+                    <NaverLogin 
+                        clientId={naverToken}
+                        callbackUrl="http://localhost:3000/"
+                        buttonText="Naver"
+                        onSuccess={onNaverSuccess}
+                        onFailure={onNaverFailure}
+                        getProfile={true}
+                        render={renderProps =>( 
+                            <Button onClick={renderProps.onClick} variant="outline-dark" className="mt-5">
+                                <img src={naverImg} style={{width:"1.5rem", height: "1.5rem"}} alt="naver img" />
+                                <span className="ml-04">Naver</span>
+                            </Button> 
                         )}
                     />
                 </Stack>

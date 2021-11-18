@@ -8,11 +8,12 @@ import (
 
 func main() {
 
-	debug := false
+	debug := false 
 
 	e := echo.New()
 	middleware.Middleware(e)
 	router.Router(e)
+	e.Use(middleware.HeaderSet)
 
 	if debug {
 		e.Logger.Fatal(e.Start(":1323"))

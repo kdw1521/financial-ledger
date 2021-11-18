@@ -27,6 +27,7 @@ function Home() {
                 setLedgerData(res.data);
             })
             .catch(err => {
+                console.log(err)
                 if(err.response.status === 401) {
                    alert("토큰 만기로 로그아웃 됩니다. 재로그인 해주세요!") 
                    localStorage.clear()
