@@ -33,7 +33,7 @@ func HeaderSet(next echo.HandlerFunc) echo.HandlerFunc {
 	   c.Response().Header().Set("Cache-Control", "no-store, no-cache, must-revalidate")
 	   c.Response().Header().Set("Cache-Control", "pre-check=0, post-check=0, max-age=0")
 	   c.Response().Header().Set("Pragma", "no-cache")
-	   c.Response().Header().Set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, accept, authorization")
+	   c.Response().Header().Set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, accept, Authorization")
 	   c.Response().Header().Set("Access-Control-Allow-Origin", "https://wando.ga")
 	   c.Response().Header().Set("Access-Control-Max-Age", "3600")
 	   c.Response().Header().Set("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS")

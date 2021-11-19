@@ -15,6 +15,7 @@ import googleImg from "img/google.png"
 const clientId = process.env.REACT_APP_CLIENT_ID;
 const kakaoToken = process.env.REACT_APP_KAKAO_TOKEN;
 const naverToken = process.env.REACT_APP_NAVER_TOKEN;
+const naverCallback = process.env.REACT_APP_NAVER_CALLBACK;
 
 function Social({isLogin}) {
 
@@ -46,7 +47,8 @@ function Social({isLogin}) {
     }
 
     const onNaverSuccess = async (e) => {
-        console.log(e)
+        const { id, name } = e;
+        socialLogin(id, name)
     }
 
     const onKakaoFail = async (err) => {
@@ -97,7 +99,7 @@ function Social({isLogin}) {
                     />
                     <NaverLogin 
                         clientId={naverToken}
-                        callbackUrl="http://localhost:3000/"
+                        callbackUrl= {naverCallback}
                         buttonText="Naver"
                         onSuccess={onNaverSuccess}
                         onFailure={onNaverFailure}
