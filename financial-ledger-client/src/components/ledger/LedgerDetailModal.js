@@ -13,13 +13,16 @@ function LedgerDetailModal(props) {
     const [ledgerType, setLedgerType] = useState(props.ledgertype)
     const [ledgerIdx, setLedgerIdx] = useState(props.ledgeridx)
     const [detailIdx, setDetailIdx] = useState(props.detailidx)
+    const [payment, setPayment] = useState(props.payment)
     const [price, setPrice] = useState(props.price)
     const [details, setDetails] = useState(props.details)
+
 
     useEffect( () => {
         setLedgerType(props.ledgertype)
         setKind(props.kind)
         setDetailIdx(props.detailidx)
+        setPayment(props.payment)
         setPrice(props.price)
         setDetails(props.details)
         setLedgerIdx(props.ledgeridx)
@@ -29,7 +32,8 @@ function LedgerDetailModal(props) {
         props.kind, 
         props.detailidx, 
         props.details, 
-        props.price
+        props.price,
+        props.payment
     ])
 
     const onChange = (e) => {
@@ -39,8 +43,10 @@ function LedgerDetailModal(props) {
 
         if(name === "price") {
             setPrice(value)
-        } else if(name ==="details") {
+        } else if(name === "details") {
             setDetails(value)
+        } else if(name === "payment") {
+            setPayment(value)
         }
     }
 
@@ -48,6 +54,7 @@ function LedgerDetailModal(props) {
         if(kind === "add") {
             try {
                 const result = await axios.post(LEDGER_DETAIL_URL,{
+                        payment,
                         "price" : Number(price),
                         details,
                         ledgerType,
@@ -69,6 +76,7 @@ function LedgerDetailModal(props) {
             try {
                 const result = await axios.put(LEDGER_DETAIL_URL, 
                     {
+                        payment,
                         detailIdx,
                         "price" :Number(price),
                         details
@@ -104,6 +112,8 @@ function LedgerDetailModal(props) {
     }
 
 
+
+
     return (
         <Modal
           {...props}
@@ -120,6 +130,14 @@ function LedgerDetailModal(props) {
             </Modal.Header>
 
             <Modal.Body>
+                <FloatingLabel
+                    controlId="floatingInput"
+                    label="결제수단"
+                    className="mb-3"
+                >
+                    <Form.Control type="text" value={payment || ""} name="payment" onChange={onChange} />
+                </FloatingLabel>
+
                 <FloatingLabel
                         controlId="floatingInput"
                         label="금액"

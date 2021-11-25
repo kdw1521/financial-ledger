@@ -48,10 +48,12 @@ func UpdateLedgerDetail(c echo.Context) error {
 	bodys := make(map[string]interface{})
 	c.Bind(&bodys)
 
+	reqPayment := bodys["payment"]
 	reqPrice := bodys["price"]
 	reqDetails := bodys["details"]
 
 	ledgerDetailData := updateFinancialLedgerDetailData{
+		Payment: reqPayment,
 		Price: reqPrice,
 		Details: reqDetails,
 		UpdateDt: time.Now(),
@@ -75,9 +77,11 @@ func SaveLedgerDetail(c echo.Context) error {
 	mysql := mysql.ConMysql()
 	mysql.LogMode(true)
 	defer mysql.Close()
+	fmt.Print(bodys)
 
 	ledgerDetailData := saveFinancialLedgerDetailData{
 		FinancialLedgerIdx: bodys["ledgerIdx"],
+		Payment: bodys["payment"],
 		Price: bodys["price"],
 		Details: bodys["details"],
 		LedgerType: bodys["ledgerType"],
