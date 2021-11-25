@@ -15,6 +15,7 @@ function LedgerDetailModal(props) {
     const [detailIdx, setDetailIdx] = useState(props.detailidx)
     const [payment, setPayment] = useState(props.payment)
     const [price, setPrice] = useState(props.price)
+    const [purpose, setPurpose] = useState(props.purpose)
     const [details, setDetails] = useState(props.details)
 
 
@@ -24,6 +25,7 @@ function LedgerDetailModal(props) {
         setDetailIdx(props.detailidx)
         setPayment(props.payment)
         setPrice(props.price)
+        setPurpose(props.purpose)
         setDetails(props.details)
         setLedgerIdx(props.ledgeridx)
     }, [
@@ -33,6 +35,7 @@ function LedgerDetailModal(props) {
         props.detailidx, 
         props.details, 
         props.price,
+        props.purpose,
         props.payment
     ])
 
@@ -47,6 +50,8 @@ function LedgerDetailModal(props) {
             setDetails(value)
         } else if(name === "payment") {
             setPayment(value)
+        } else if(name === "purpose") {
+            setPurpose(value)
         }
     }
 
@@ -54,6 +59,7 @@ function LedgerDetailModal(props) {
         if(kind === "add") {
             try {
                 const result = await axios.post(LEDGER_DETAIL_URL,{
+                        purpose,
                         payment,
                         "price" : Number(price),
                         details,
@@ -76,6 +82,7 @@ function LedgerDetailModal(props) {
             try {
                 const result = await axios.put(LEDGER_DETAIL_URL, 
                     {
+                        purpose,
                         payment,
                         detailIdx,
                         "price" :Number(price),
@@ -144,6 +151,14 @@ function LedgerDetailModal(props) {
                         className="mb-3"
                 >
                     <Form.Control type="number" value={price || ""} name="price" onChange={onChange} />
+                </FloatingLabel>
+
+                <FloatingLabel
+                        controlId="floatingInput"
+                        label="사용처"
+                        className="mb-3"
+                >
+                    <Form.Control type="text" value={purpose || ""} name="purpose" onChange={onChange} />
                 </FloatingLabel>
 
                 <FloatingLabel

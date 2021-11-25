@@ -48,12 +48,14 @@ func UpdateLedgerDetail(c echo.Context) error {
 	bodys := make(map[string]interface{})
 	c.Bind(&bodys)
 
+	reqPurpose := bodys["purpose"]
 	reqPayment := bodys["payment"]
 	reqPrice := bodys["price"]
 	reqDetails := bodys["details"]
 
 	ledgerDetailData := updateFinancialLedgerDetailData{
 		Payment: reqPayment,
+		Purpose: reqPurpose,
 		Price: reqPrice,
 		Details: reqDetails,
 		UpdateDt: time.Now(),
@@ -81,6 +83,7 @@ func SaveLedgerDetail(c echo.Context) error {
 
 	ledgerDetailData := saveFinancialLedgerDetailData{
 		FinancialLedgerIdx: bodys["ledgerIdx"],
+		Purpose: bodys["purpose"],
 		Payment: bodys["payment"],
 		Price: bodys["price"],
 		Details: bodys["details"],

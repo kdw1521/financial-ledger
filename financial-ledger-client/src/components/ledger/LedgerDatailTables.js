@@ -10,11 +10,13 @@ function LedgerDetailTables({datas}) {
     const [details, setDetails] = useState('')
     const [price, setPrice] = useState(0)
     const [payment, setPayment] = useState('')
+    const [purpose, setPurpose] = useState('')
 
-    const onClick = (ledgerDetailIdx, details, price, payment) => {
+    const onClick = (ledgerDetailIdx, details, price, payment, purpose) => {
         setDetails(details)
         setDetailIdx(ledgerDetailIdx)
         setPrice(price)
+        setPurpose(purpose)
         setPayment(payment)
         setModalShow(true)
     }
@@ -39,12 +41,13 @@ function LedgerDetailTables({datas}) {
                                     val.financialLedgerDetailIdx, 
                                     val.details, 
                                     val.price, 
-                                    val.payment)} 
+                                    val.payment,
+                                    val.purpose)} 
                                 className="mouse-pointer"
                             >
                                 <td>{val.payment}</td>
                                 <td>{val.price}</td>
-                                <td>왜 썼는지</td>
+                                <td>{val.purpose}</td>
                                 <td>{val.details}</td>
                             </tr>
                         )
@@ -60,6 +63,7 @@ function LedgerDetailTables({datas}) {
                 details={details}
                 price={price}
                 payment={payment}
+                purpose={purpose}
             />
         </>
     )

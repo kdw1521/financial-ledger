@@ -49,6 +49,7 @@ type allFinancialLedgerDetailResults struct {
 type getFinancialLedgerDetailData struct {
 	FinancialLedgerDetailIdx uint64 `json:"financialLedgerDetailIdx"`
 	Payment string `json:"payment"`
+	Purpose string `json:"purpose"`
 	Price uint64 `json:"price"`
 	Details string `json:"details"`
 	LedgerType string `json:"ledgerType"`
@@ -56,6 +57,7 @@ type getFinancialLedgerDetailData struct {
 
 type updateFinancialLedgerDetailData struct {
 	Payment interface{} `json:"payment"`
+	Purpose interface{} `json:"purpose"`
 	Price interface{} `json:"price"`
 	Details interface{} `json:"details"`
 	UpdateDt time.Time `json:"updateDt"`
@@ -63,6 +65,7 @@ type updateFinancialLedgerDetailData struct {
 
 type saveFinancialLedgerDetailData struct {
 	FinancialLedgerIdx interface{} `json:"financialLedgerIdx"`
+	Purpose interface{} `json:"purpose"`
 	Payment interface{} `json:"payment"`
 	Price interface{} `json:"price"`
 	Details interface{} `json:"details"`
