@@ -67,7 +67,7 @@ function LedgerDetail({location}) {
                         placement="bottom"
                         overlay={
                             <Tooltip id="tooltip-bottom">
-                                <span className="font-size-0-8">차액 : {(allPlus-allMinus) > 0 && "+"}{allPlus - allMinus}</span>
+                                <span className="font-size-0-8">차액 : {(allPlus-allMinus) > 0 && "+"}{(allPlus - allMinus).toLocaleString('ko-KR')}</span>
                             </Tooltip>
                         }
                         >
@@ -83,7 +83,7 @@ function LedgerDetail({location}) {
                             placement="bottom"
                             overlay={
                                 <Tooltip id="tooltip-bottom">
-                                    <span className="font-size-0-8">전체 수입 : {allPlus}</span>
+                                    <span className="font-size-0-8">전체 수입 : {allPlus.toLocaleString('ko-KR')}</span>
                                 </Tooltip>
                             }
                             >
@@ -116,7 +116,7 @@ function LedgerDetail({location}) {
                             placement="bottom"
                             overlay={
                                 <Tooltip id="tooltip-bottom">
-                                    <span className="font-size-0-8">전체 지출 : {allMinus}</span>
+                                    <span className="font-size-0-8">전체 지출 : {allMinus.toLocaleString('ko-KR')}</span>
                                 </Tooltip>
                             }
                             >

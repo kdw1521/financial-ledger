@@ -8,7 +8,7 @@ import (
 
 func main() {
 
-	debug := false 
+	debug := true 
 
 	e := echo.New()
 	middleware.Middleware(e)

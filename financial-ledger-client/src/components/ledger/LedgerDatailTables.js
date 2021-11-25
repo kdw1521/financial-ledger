@@ -46,7 +46,7 @@ function LedgerDetailTables({datas}) {
                                 className="mouse-pointer"
                             >
                                 <td>{val.payment}</td>
-                                <td>{val.price}</td>
+                                <td>{val.price.toLocaleString('ko-KR')}</td>
                                 <td>{val.purpose}</td>
                                 <td>{val.details}</td>
                             </tr>

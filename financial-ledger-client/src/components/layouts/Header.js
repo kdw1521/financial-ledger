@@ -25,7 +25,7 @@ function Header() {
                     <Nav>
                         <Link to="/">
                             <img src={wd} style={{height:30}} alt="wando logo" />
-                            <span className="font-color">Financial-ledger</span>
+                            <span className="font-color">가계부</span>
                         </Link>
                     </Nav>
                     <Nav>
